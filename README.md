@@ -1,11 +1,11 @@
 # Information Technology Residency at TJGO
-https://sistemas.institutoverbena.ufg.br/2024/residencia-ti-tjgo/
+Media:
+- https://sistemas.institutoverbena.ufg.br/2024/residencia-ti-tjgo/
+- https://www.tjgo.jus.br/index.php/agencia-de-noticias/noticias-ccs/20-destaque/31682-presidente-carlos-franca-recebe-60-residentes-de-tecnologia-da-informacao-programa-e-fruto-de-parceria-entre-tjgo-e-ufg
 
-- Course: Introduction to Programming
-- Teacher: Dra. Nádia Félix Felipe da Silva
-- This repository contains the source code of the final project developed during the Introduction to Programming course, taken as part of the Information Technology Residency at the Court of Justice of the State of Goiás (TJGO).
+Participating in the Information Technology Residency Program, an initiative of the Court of Justice of the State of Goiás (TJGO) in partnership with the Federal University of Goiás (UFG), aimed at developing technological solutions and fostering innovation within the Judiciary.
 
-- Instructions for using the model are available on the official Legal-BERT page on Hugging Face: https://huggingface.co/nlpaueb/legal-bert-base-uncased
+Working in the Directorate of Artificial Intelligence, Data Science, and Statistics (DIACDE), developing solutions involving Natural Language Processing and Artificial Intelligence applied to the legal domain.
 
-
+# All relevant code from the academic modules, as well as projects developed within DIACDE, will be shared in this space.
 
