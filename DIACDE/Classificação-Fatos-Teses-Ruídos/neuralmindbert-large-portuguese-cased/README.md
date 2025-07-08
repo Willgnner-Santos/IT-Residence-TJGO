@@ -1,16 +1,28 @@
-﻿# Projeto SSO
+# Classificador de Documentos Jurídicos - neuralmind/bert-large-portuguese-cased
 
-Este projeto implementa um sistema de autenticação utilizando Flask com suporte a Docker e Docker Compose.
+## Visão Geral
 
-## Estrutura
+Este projeto utiliza o modelo [neuralmind/bert-large-portuguese-cased](https://huggingface.co/neuralmind/bert-large-portuguese-cased) para classificar documentos jurídicos com uma interface desenvolvida em Streamlit.
 
-- `app.py`: arquivo principal do servidor
-- `config.py`: configurações do app
-- `templates/`: arquivos HTML
-- `Dockerfile`: define a imagem Docker
-- `docker-compose.yml`: orquestra o serviço
+## Instruções de Execução
 
-## Execução
+Para rodar o modelo localmente, siga os passos:
 
-```bash
-docker-compose up --build
+1. **Clone o repositório em sua máquina local.**
+2. **Crie as seguintes pastas na raiz do projeto:**
+   - `Config-Model`
+   - `Dados`
+   - `model_128tokens`
+
+3. **Insira os arquivos necessários:**
+   - Na pasta `Dados`: insira os dados que serão processados pelo modelo.
+   - Acesse: [https://huggingface.co/neuralmind/bert-large-portuguese-cased](https://huggingface.co/neuralmind/bert-large-portuguese-cased).
+   -  Baixe os arquivos necessários e salve localmente em `Config-Model`.
+   - Na pasta `Config-Model`, insira os arquivos de configuração.
+
+4. **Executar a interface Streamlit:**
+
+   No terminal, execute:
+
+   ```bash
+   streamlit run app.py
