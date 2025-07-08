@@ -30,3 +30,5 @@ Para rodar o modelo localmente, siga os passos:
 5. **Exemplo do Streamlit**:
 - Basta aletar o nome do modelo no app, ness exemplo, usou o LegalBERT
 ![image](https://github.com/user-attachments/assets/09525eb6-3e57-424f-b278-5f22241000dc)
+![image](https://github.com/user-attachments/assets/e52905b5-cfa2-4c7e-8074-e84ea217314b)
+![image](https://github.com/user-attachments/assets/bfe831ae-506a-4fda-94c5-b0c7f9fe3484)
