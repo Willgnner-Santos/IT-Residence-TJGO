@@ -21,7 +21,7 @@ juris_embeddings = torch.load("embeddings.pt")
 
 # Cliente da API do sabia-3
 client = openai.OpenAI(
-    api_key="67d85e438a7bf6f97b656ed9_5215e7b3773541e0",
+    api_key="COLOCAR_CHAVE_API",
     base_url="https://chat.maritaca.ai/api"
 )
 
