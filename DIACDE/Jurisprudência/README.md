@@ -168,7 +168,8 @@ Este projeto foi desenvolvido para consultas jurídicas inteligentes com uso de 
 
 ## Prints V1 e V2 respectivamente
 ![image](https://github.com/user-attachments/assets/35df6c26-ad7f-4847-9f61-1cb93f282bba)
-![Uploading image.png…]()
+![image](https://github.com/user-attachments/assets/06678e50-d273-4218-823c-7aec46bed969)
+
 
 
 
