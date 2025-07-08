@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta Jurídica Inteligente (Sabiá-3)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #f2f4f8;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 290px;
+            background-color: #ffffff;
+            padding: 30px 25px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .sidebar img {
+            width: 140px;
+            margin-bottom: 10px;
+        }
+
+        .barra {
+            border-top: 4px solid black;
+            width: 100px;
+            margin: 0 auto 12px auto;
+        }
+
+        .sidebar h2 {
+            font-size: 16px;
+            color: #0a4275;
+            margin: 12px 0 10px;
+        }
+
+        .sidebar p {
+            font-size: 13px;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        .main {
+            flex: 1;
+            padding: 60px;
+            text-align: center;
+            background-color: #f2f4f8;
+        }
+
+        h1 {
+            color: #0a4275;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 40px;
+        }
+
+        input[type="text"] {
+            width: 60%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+            outline: none;
+            box-shadow: 0 0 4px rgba(59, 130, 246, 0.4);
+        }
+
+        input[type="submit"] {
+            padding: 12px 30px;
+            font-size: 16px;
+            background-color: #0a4275;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #063358;
+        }
+
+        .box {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            text-align: left;
+        }
+
+        .titulo {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #0a4275;
+        }
+
+        .preformatado {
+            white-space: pre-wrap;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        hr {
+            margin: 25px 0;
+            border: none;
+            border-top: 1px solid #ddd;
+        }
+
+        .loading {
+            text-align: center;
+            font-size: 18px;
+            color: #0a4275;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <img src="{{ url_for('static', filename='Logo.png') }}" alt="Logo TJGO"
+                style="width: 250px; margin-top: 20px;">
+
+            <div style="margin-top: 10px;">
+                <div style="border-top: 2px solid #000; width: 90%; margin: 10px auto;"></div>
+            </div>
+
+            <div style="font-size: 17px; color: #2d74d4; font-weight: bold; margin: 10px 0;">
+                Consulta Jurídica Inteligente
+            </div>
+
+            <p style="text-align: justify; font-size: 13px; line-height: 1.5;">
+                A solução foi desenvolvida pela Diretoria de Inteligência Artificial, Ciência de Dados e Estatística
+                (DIACDE)
+                com o objetivo de automatizar a recuperação de jurisprudência relevante com base em perguntas feitas
+                em linguagem natural por usuários do sistema de justiça.
+            </p>
+        </div>
+
+        <!-- Principal -->
+        <div class="main">
+            <!-- Mensagens de alerta -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="box" style="background-color: #fff8e1; border-left: 5px solid #ffc107; color: #333;">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <h1>🔎 Consulta Jurídica Inteligente</h1>
+
+            <form method="post" onsubmit="mostrarCarregando()">
+                <label for="pergunta">Digite sua pergunta jurídica:</label><br><br>
+                <input type="text" id="pergunta" name="pergunta" required
+                    placeholder="Ex: Jurisprudência sobre dano moral por negativação indevida"><br><br>
+                <input type="submit" value="Buscar">
+                <button type="button" onclick="limparCampo()"
+                    style="padding: 12px 30px; margin-left: 10px; font-size: 16px; background-color: #dc3545; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                    Limpar
+                </button>
+            </form>
+
+            <div id="carregando" style="display: none;" class="loading">
+                🔄 Buscando jurisprudências...
+            </div>
+
+            {% if resposta %}
+            <div class="box">
+                <div class="titulo">📄 Resultado da Consulta:</div>
+                <div class="preformatado">{{ resposta | safe }}</div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        function mostrarCarregando() {
+            document.getElementById("carregando").style.display = "block";
+        }
+
+        function limparCampo() {
+            document.getElementById("pergunta").value = "";
+            document.getElementById("carregando").style.display = "none";
+            const box = document.querySelector('.box');
+            if (box) box.style.display = 'none';
+        }
+    </script>
+
+</body>
+
+</html>
