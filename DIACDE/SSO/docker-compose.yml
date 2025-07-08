@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  app_sso_tjgo:
+    build: .
+    ports:
+      - "5004:5000"
+    volumes:
+      - .:/app
+    environment:
+      FLASK_ENV: development
+      CLIENT_ID: ${CLIENT_ID}
+      CLIENT_SECRET: ${CLIENT_SECRET}
+      REDIRECT_URI: ${REDIRECT_URI}
