@@ -26,3 +26,7 @@ Para rodar o modelo localmente, siga os passos:
 
    ```bash
    streamlit run app.py
+
+5. **Exemplo do Streamlit**:
+- Basta aletar o nome do modelo no app, ness exemplo, usou o LegalBERT
+![image](https://github.com/user-attachments/assets/09525eb6-3e57-424f-b278-5f22241000dc)
