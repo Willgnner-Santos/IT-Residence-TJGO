@@ -6,10 +6,10 @@ import requests
 from bs4 import BeautifulSoup
 
 app = Flask(__name__)
-app.secret_key = '8f9a3c9a7c234b2e9f59e57c1c123456'
+app.secret_key = 'COLOCAR_CHAVE_API'
 
 client = openai.OpenAI(
-    api_key="67d85e438a7bf6f97b656ed9_5215e7b3773541e0",
+    api_key="COLOCAR_CHAVE_API",
     base_url="https://chat.maritaca.ai/api",
 )
 
