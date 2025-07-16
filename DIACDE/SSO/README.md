@@ -14,3 +14,6 @@ Este projeto implementa um sistema de autenticação utilizando Flask com suport
 
 ```bash
 docker-compose up --build
+```
+## Exemplo de uso em homologação
+<img width="1919" height="1029" alt="image" src="https://github.com/user-attachments/assets/f6d68356-d1c9-4043-b15e-8e00b456406a" />
