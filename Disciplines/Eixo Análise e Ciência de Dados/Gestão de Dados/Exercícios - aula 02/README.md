@@ -221,7 +221,7 @@ SLA: reduzir inconsistências abaixo de 1% nas principais variáveis.
 - **Python** (pandas, numpy, matplotlib, seaborn)  
 - **PostgreSQL** (armazenamento dos dados)  
 - **SQLAlchemy** (integração Python–Postgres)  
-- **OpenRouter API** (uso de LLM para relatório estratégico)  
+- **OpenRouter API** (uso de LLM para relatório)  
 
 ---
 
