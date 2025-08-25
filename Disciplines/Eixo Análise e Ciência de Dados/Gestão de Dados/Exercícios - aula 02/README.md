@@ -1,11 +1,8 @@
-# 🚀 Exercício 1 – Ciclo de Vida de Dados
-
-Este repositório contém a resolução do **Exercício 1** da disciplina **Gestão de Dados**, no contexto do **Programa de Residência em TI (TJGO/UFG)**.  
-O objetivo foi planejar uma aplicação para a **coleta de dados**, considerando a integração de arquivos CSV não padronizados em um banco de dados relacional.
+# Exercício 1 – Ciclo de Vida de Dados
 
 ---
 
-## 📊 Ciclo de Vida dos Dados
+## Ciclo de Vida dos Dados
 
 Etapas consideradas:
 
@@ -14,17 +11,6 @@ Etapas consideradas:
 3. **Processamento** → Padronização de colunas e tipos  
 4. **Uso** → Consultas SQL para análise  
 5. **Retenção/Descarte** → Estratégias de anonimização e arquivamento  
-
----
-
-## 📂 Estrutura do Projeto
-
-```
-├── data/
-│   ├── Stress_Dataset.csv
-│   ├── StressLevelDataset.csv
-├── README.md
-```
 
 ---
 
@@ -39,7 +25,7 @@ Foram aplicadas transformações para padronização:
 
 ---
 
-## 🗄️ Estrutura SQL
+## Estrutura SQL
 
 ```sql
 -- Tabela 1: Questionário com perguntas textuais
@@ -102,7 +88,7 @@ CREATE TABLE stress_level_dataset (
 
 ---
 
-## 📥 Inserção no Banco
+## Inserção no Banco
 
 ```python
 import pandas as pd
@@ -123,7 +109,7 @@ df2.columns = [c.strip().lower().replace(" ", "_").replace("?", "").replace("/",
 df1.to_sql("stress_dataset", engine, if_exists="append", index=False)
 df2.to_sql("stress_level_dataset", engine, if_exists="append", index=False)
 
-print("✅ Dados inseridos com sucesso!")
+print("Dados inseridos com sucesso!")
 
 Exemplo
 
@@ -132,27 +118,18 @@ Exemplo
 
 ---
 
-## 🔍 Exemplos de Consultas SQL
+## Exemplos de Consultas no Banco 
 
-```sql
--- Número de registros por tipo de estresse
-SELECT stress_type, COUNT(*) 
-FROM stress_dataset
-GROUP BY stress_type;
-
--- Média de ansiedade por nível de estresse
-SELECT stress_level, AVG(anxiety_level) 
-FROM stress_level_dataset
-GROUP BY stress_level;
-
--- Relação entre autoestima e desempenho acadêmico
-SELECT AVG(self_esteem), AVG(academic_performance) 
-FROM stress_level_dataset;
+```sql 
+select * from stress_dataset;
+select * from stress_level_dataset;
 ```
+<img width="1917" height="1028" alt="image" src="https://github.com/user-attachments/assets/a77cb0e8-8967-4004-a5e4-19016dd57527" />
+
 
 ---
 
-## ♻️ Retenção e Descarte
+## Retenção e Descarte
 
 - **Retenção**: manter apenas dados agregados (médias, distribuições).  
 - **Anonimização**: remover identificadores pessoais antes de análises públicas.  
@@ -160,27 +137,11 @@ FROM stress_level_dataset;
 
 ---
 
-## 📌 Entregável
-
-- **Entrada**: CSVs originais (`Stress_Dataset.csv`, `StressLevelDataset.csv`)  
-- **Estrutura**: comandos `CREATE TABLE` (acima)  
-- **Inserção**: script Python (acima)  
-- **Saída**: Consultas SQL (exemplos)  
-- **Entrega**: via GitHub ou anexo da aplicação  
-
----
-✍️ Autor: *Willgnner Ferreira Santos*  
-📅 Data: 2025  
-
-
-# 🚀 Exercício 2 – Monitoramento Estratégico da Qualidade de Dados
-
-Este repositório contém a resolução do **Exercício 2** da disciplina **Gestão de Dados**, no contexto do **Programa de Residência em TI (TJGO/UFG)**.  
-O objetivo foi **monitorar dimensões de qualidade e governança de dados**, a partir da integração dos arquivos do Kaggle sobre estresse em estudantes, e gerar **análises estratégicas** para apoiar a gestão.
+# Exercício 2 – Monitoramento Estratégico da Qualidade de Dados
 
 ---
 
-## 📊 Dimensões de Qualidade Monitoradas
+## Dimensões de Qualidade Monitoradas
 
 Foram acompanhadas no mínimo **5 dimensões** de qualidade, conforme boas práticas:
 
@@ -193,7 +154,7 @@ Foram acompanhadas no mínimo **5 dimensões** de qualidade, conforme boas prát
 
 ---
 
-## 📈 Painel de Monitoramento
+## Painel de Monitoramento
 
 Foram construídos gráficos em Python (matplotlib/seaborn) organizados em um **dashboard 2x3**:
 
@@ -204,13 +165,13 @@ Foram construídos gráficos em Python (matplotlib/seaborn) organizados em um **
 - **Acurácia**: idades plausíveis, com poucos outliers acima de 60 anos.  
 - **Viés**: médias de stress praticamente idênticas entre gêneros (sem viés relevante).  
 
-📌 Exemplo de saída do painel:
+Exemplo de saída do painel:
 
-![painel](image.png)
+<img width="1820" height="874" alt="image" src="https://github.com/user-attachments/assets/4bfaef63-0a63-4eca-be5b-58e95697b145" />
 
 ---
 
-## 📑 Relatório Estratégico (gerado via LLM)
+## Relatório (gerado via LLM)
 
 ### Sumário Executivo
 A base apresenta **excelente completude e unicidade (100%)**, mas sofre com **problemas de consistência e validade (60,7%)**. A acurácia está próxima do ideal (99,2%).  
@@ -253,31 +214,9 @@ SLA: reduzir inconsistências abaixo de 1% nas principais variáveis.
 - **Fairness**: revisões trimestrais com métricas de equidade.  
 - **Transparência**: relatórios claros e públicos sobre qualidade.  
 
-### Checklist de Implementação
-- [ ] Implementar regras de validação (1–5).  
-- [ ] Deduplicar registros na carga inicial.  
-- [ ] Documentar métricas de qualidade no catálogo de dados.  
-- [ ] Configurar alertas automáticos no pipeline.  
-- [ ] Revisar políticas de privacidade e fairness.  
-
 ---
 
-## 📂 Estrutura do Projeto
-
-```
-├── data/
-│   ├── Stress_Dataset.csv
-│   ├── StressLevelDataset.csv
-├── scripts/
-│   ├── painel_monitoramento.py
-│   ├── indicadores_kpi.py
-│   ├── gerar_relatorio_llm.py
-├── README.md
-```
-
----
-
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **Python** (pandas, numpy, matplotlib, seaborn)  
 - **PostgreSQL** (armazenamento dos dados)  
@@ -286,14 +225,3 @@ SLA: reduzir inconsistências abaixo de 1% nas principais variáveis.
 
 ---
 
-## 📌 Entregável
-
-- **Entrada**: CSVs originais (`Stress_Dataset.csv`, `StressLevelDataset.csv`)  
-- **Processo**: scripts de análise + monitoramento das dimensões de qualidade  
-- **Saída**: Painel visual + Relatório estratégico em Markdown (via LLM)  
-- **Entrega**: via GitHub com prints e README.md atualizado  
-
----
-
-✍️ Autor: *Willgnner Ferreira Santos*  
-📅 Data: 2025  
