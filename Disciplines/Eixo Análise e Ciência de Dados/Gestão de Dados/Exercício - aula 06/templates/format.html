@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}Formatação - Processador CSV{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-paint-brush me-2"></i>Formatação dos Dados - {{ filename }}
+                </h3>
+                <a href="{{ url_for('configure') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Voltar
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Configure como cada campo deve ser formatado na saída final.
+                </div>
+
+                <form id="formatForm">
+                    <div class="row">
+                        {% for column in columns %}
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="card-title mb-0">
+                                        <i class="fas fa-column me-2"></i>{{ column }}
+                                    </h6>
+                                    <small class="text-muted">Tipo detectado: {{ column_types.get(column, 'text') }}</small>
+                                </div>
+                                <div class="card-body">
+                                    <label class="form-label">Formato de saída:</label>
+                                    <select class="form-select" name="format_{{ column }}" data-column="{{ column }}">
+                                        {% for format_key, format_name in format_options.items() %}
+                                        <option value="{{ format_key }}" 
+                                                {% if format_key == column_types.get(column, 'text') %}selected{% endif %}>
+                                            {{ format_name }}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                    
+                                    <div class="mt-2">
+                                        <small class="text-muted">
+                                            <strong>Exemplo:</strong>
+                                            <span id="example_{{ column }}" class="text-primary">
+                                                <!-- Exemplo será preenchido via JavaScript -->
+                                            </span>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="fas fa-eye me-2"></i>Visualizar Dados Formatados
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Exemplos de formatação
+    const formatExamples = {
+        'text': 'Exemplo de texto',
+        'number': '1.234,56',
+        'currency': 'R$ 1.234,56',
+        'percentage': '12,34%',
+        'date': '25/12/2023',
+        'datetime': '25/12/2023 14:30:00',
+        'boolean': 'Sim/Não'
+    };
+
+    // Atualizar exemplos quando o formato mudar
+    document.querySelectorAll('select[name^="format_"]').forEach(select => {
+        const column = select.dataset.column;
+        const exampleSpan = document.getElementById(`example_${column}`);
+        
+        function updateExample() {
+            const selectedFormat = select.value;
+            exampleSpan.textContent = formatExamples[selectedFormat] || 'Exemplo';
+        }
+        
+        select.addEventListener('change', updateExample);
+        updateExample(); // Inicializar
+    });
+
+    // Enviar formulário
+    document.getElementById('formatForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const columnFormats = {};
+        
+        // Coletar formatação de cada coluna
+        {% for column in columns %}
+        columnFormats['{{ column }}'] = formData.get('format_{{ column }}');
+        {% endfor %}
+        
+        // Enviar via AJAX
+        fetch('{{ url_for("view_data") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(columnFormats)
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = response.url;
+            } else {
+                alert('Erro ao processar formatação');
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Erro ao processar formatação');
+        });
+    });
+</script>
+{% endblock %}
