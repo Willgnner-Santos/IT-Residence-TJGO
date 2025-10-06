@@ -4,6 +4,8 @@ Sistema inteligente para classificação automatizada de petições jurídicas c
 
 ---
 
+## Link em Produção: https://v0-classify-legal-petitions.vercel.app/
+
 ## ✨ Funcionalidades Principais
 
 ### 📊 Dashboard de BI Avançado
@@ -144,5 +146,13 @@ Sistema inteligente para classificação automatizada de petições jurídicas c
 - ⚠️ Para produção: autenticação e autorização  
 
 ---
+
+## Prints
+<img width="1719" height="917" alt="image" src="https://github.com/user-attachments/assets/1371d463-33af-4cf8-80ef-6e538ea678dc" />
+<img width="1526" height="913" alt="image" src="https://github.com/user-attachments/assets/fc26d932-9fa6-44c6-a464-ce4ff5625a27" />
+<img width="913" height="898" alt="image" src="https://github.com/user-attachments/assets/3b509136-f959-4373-ba51-316db2825d1d" />
+<img width="902" height="773" alt="image" src="https://github.com/user-attachments/assets/c37c8bea-dd35-49a9-9ab1-c7e33b04c4e6" />
+
+
 
 **Desenvolvido para análise jurídica profissional | Promissor para escritórios de advocacia, tribunais e departamentos jurídicos**
