@@ -1,0 +1,9 @@
+# --- Virtualenv ---
+venv/
+.venv/
+env/
+.env/
+
+# --- Arquivos dentro de dados/ (mas não a pasta) ---
+dados/*
+!dados/.gitkeep
