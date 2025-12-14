@@ -1,4 +1,3 @@
-````markdown
 # RAG em Bancos de Dados Multimodais com IMDb Top 1000
 
 Neste trabalho eu implementei um pipeline completo de **busca e recomendação de filmes** usando:
@@ -49,10 +48,10 @@ PGPASSWORD=admin
 
 IMDB_CSV_PATH=C:/Users/Willgnner/Documents/Atividades-Aprendizado-de-Máquina/Notebooks/Entrega-slides-2/Dados/imdb_top_1000.csv
 
-MARITACA_API_KEY=100464884795113056205_7ca4c23f2c798e6e
+MARITACA_API_KEY=<SUA_SENHA_AQUI>
 
-NEO4J_URI=neo4j+s://5736c0f1.databases.neo4j.io
-NEO4J_USER=neo4j
+NEO4J_URI=<SUA_URI_AQUI>
+NEO4J_USER=<SEU_USER>
 NEO4J_PASSWORD=<SUA_SENHA_DO_NEO4J_AQUI>
 ```
 
@@ -135,9 +134,7 @@ No pgAdmin eu confirmei que:
 * as colunas de diretores e atores estavam preenchidas;
 * os tipos numéricos (`released_year`, `imdb_rating`, `no_of_votes`, `gross_usd`) estavam coerentes.
 
-> Sugestão de print:
-> `imagens/pgadmin_imdb_top_1000.png`
-> (tabela aberta no pgAdmin mostrando `series_title`, `released_year`, `director`, `star1`–`star4`, `no_of_votes` e `gross_usd`).
+<img width="1916" height="883" alt="image" src="https://github.com/user-attachments/assets/c6428e4b-4836-408f-8ae0-6949a85ac20d" />
 
 ---
 
@@ -300,9 +297,9 @@ E obtive resultados coerentes, incluindo filmes como **Ford v Ferrari**, **Rush*
 Para combinar a relevância lexical e vetorial, eu implementei o **Reciprocal Rank Fusion (RRF)**.
 Dado um conjunto de listas ordenadas de documentos, o score de um documento é:
 
-[
-\text{RRF}(d) = \sum_i \frac{1}{k + \text{rank}_i(d)}
-]
+$$
+\mathrm{RRF}(d) = \sum_{i=1}^{m} \frac{1}{k + \mathrm{rank}_i(d)}
+$$
 
 Eu implementei assim:
 
@@ -489,10 +486,6 @@ print(resposta)
 
 O modelo gerou uma resposta explicando por que certos filmes eram boa recomendação, usando apenas o contexto recuperado do banco.
 
-> Sugestão de print:
-> `imagens/rag_resposta_sabia3.png`
-> (tabela de candidatos + resposta em texto).
-
 ---
 
 ## 7. Mini-grafo no Neo4j AuraDB (bônus)
@@ -503,8 +496,8 @@ Eu criei uma instância **Neo4j AuraDB Free** chamada `imdb-graph`.
 As variáveis ficaram assim no `.env`:
 
 ```env
-NEO4J_URI=neo4j+s://5736c0f1.databases.neo4j.io
-NEO4J_USER=neo4j
+NEO4J_URI=<SUA_URI_AQUI>
+NEO4J_USER=<SEU_USER>
 NEO4J_PASSWORD=<SUA_SENHA_DO_NEO4J_AQUI>
 ```
 
@@ -543,10 +536,8 @@ E visualizei clusters de filmes conectados a diretores, por exemplo:
 * `Peter Jackson` conectado aos filmes de **Lord of the Rings**;
 * `Steven Spielberg` conectado a filmes como **Jurassic Park**, **Saving Private Ryan**, etc.
 
-> Sugestão de prints:
-> `imagens/neo4j_overview.png` – visão geral do grafo
-> `imagens/neo4j_peter_jackson_lotr.png` – subgrafo do Peter Jackson
-> `imagens/neo4j_steven_spielberg.png` – subgrafo do Spielberg
+<img width="1906" height="941" alt="image" src="https://github.com/user-attachments/assets/bb631384-dfb3-416c-a0bd-5668ab8033fd" />
+<img width="1918" height="954" alt="image" src="https://github.com/user-attachments/assets/971b61cb-2482-494d-afbd-5a5b105e69ad" />
 
 ### 7.3. Consultas em grafo (exemplos)
 
@@ -572,34 +563,12 @@ Essas consultas permitem recomendações do tipo **“quem trabalhou com quem”
 
 ## 8. Organização das imagens
 
-Para registrar os prints que eu gerei (pgAdmin, Neo4j e saída do RAG), eu usei a seguinte estrutura:
+Prints que eu gerei (Neo4j)
 
-```text
-Entrega-slides-2/
- ├── Dados/
- ├── imagens/
- │   ├── pgadmin_imdb_top_1000.png
- │   ├── neo4j_overview.png
- │   ├── neo4j_peter_jackson_lotr.png
- │   ├── neo4j_steven_spielberg.png
- │   └── rag_resposta_sabia3.png
- ├── RAG.ipynb
- └── README.md
-```
-
-No próprio README eu posso referenciar esses arquivos assim:
-
-```markdown
-![Tabela IMDb no pgAdmin](imagens/pgadmin_imdb_top_1000.png)
-
-![Mini-grafo no Neo4j (visão geral)](imagens/neo4j_overview.png)
-
-![Subgrafo de Peter Jackson e Lord of the Rings](imagens/neo4j_peter_jackson_lotr.png)
-
-![Subgrafo de Steven Spielberg](imagens/neo4j_steven_spielberg.png)
-
-![Exemplo de resposta do RAG com Sabiá-3](imagens/rag_resposta_sabia3.png)
-```
+<img width="726" height="559" alt="image" src="https://github.com/user-attachments/assets/5f4c9607-bd3a-4d61-9ea1-7e490d74cd8f" />
+<img width="1367" height="586" alt="image" src="https://github.com/user-attachments/assets/0d0a7fb3-11aa-49b4-83ef-4e514cf7bdcf" />
+<img width="1346" height="593" alt="image" src="https://github.com/user-attachments/assets/245aa4ec-3e4a-4720-b731-524420478d36" />
+<img width="1910" height="943" alt="image" src="https://github.com/user-attachments/assets/ba4168be-466a-4727-9355-286c6f37bd4f" />
 
 ---
 
@@ -636,7 +605,3 @@ Para outra pessoa conseguir repetir o experimento, o caminho é:
    * (Opcional) Conectar ao Neo4j Aura, criar o mini-grafo e testar algumas consultas.
 
 Seguindo esses passos, é possível reproduzir o mesmo fluxo de **busca híbrida + RAG** usando a base IMDb Top 1000 em um cenário com **PostgreSQL + embeddings + LLM + grafo**.
-
-```
-::contentReference[oaicite:0]{index=0}
-```
