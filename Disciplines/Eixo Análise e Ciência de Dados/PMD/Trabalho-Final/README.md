@@ -1,3 +1,5 @@
+Alunos: Willgnner Ferreira Santos, Manuel Lucala Zengo e Alexandre Rodrigues de Matos.
+
 # PMD – Pipeline de Processamento Massivo de Dados de Conciliação (TJGO)
 
 Este repositório documenta um **pipeline de dados massivo** para analisar processos de conciliação do TJGO (CEJUSC), usando:
