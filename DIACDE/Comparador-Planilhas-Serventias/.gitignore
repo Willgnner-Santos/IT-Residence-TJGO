@@ -1,0 +1,12 @@
+@'
+# Dados e resultados (normalmente não versionar)
+Dados/*.csv
+outputs/*.csv
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.pyc
+'@ | Set-Content DIACDE\comparador-planilhas-serventias\.gitignore -Encoding utf8
