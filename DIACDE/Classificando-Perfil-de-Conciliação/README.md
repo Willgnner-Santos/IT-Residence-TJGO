@@ -12,12 +12,8 @@ Este repositório organiza um pipeline para **classificar o perfil de conciliaç
 
 ## Estrutura do repositório (visão local)
 
-Abaixo está uma visão **do seu ambiente local**, com dados e artefatos.  
-Ela serve como referência para organização (você pode inserir um print nessa seção).
-
-📌 **Print da estrutura (coloque aqui):**
-- Sugestão: crie `docs/estrutura_repositorio.png` e referencie:
-  - `![Estrutura do repositório](docs/estrutura_repositorio.png)`
+Abaixo está uma visão **do ambiente local**, com dados e artefatos.  
+Ela serve como referência para organização.
 
 Estrutura (resumo):
 
