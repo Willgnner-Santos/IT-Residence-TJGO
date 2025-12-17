@@ -231,7 +231,7 @@ __pycache__/
 
 ---
 
-## Como reproduzir (alto nível)
+## Como reproduzir 
 
 1) **Coloque os dados localmente** nas pastas `Dados/` (ou em `Conciliacao/dados/cejusc_*/`).  
 2) Rode scripts em `Scripts/` para:
@@ -242,15 +242,8 @@ __pycache__/
 
 ---
 
-## Nota sobre publicação dos dados no Hugging Face
-
-Se você for publicar as **Planilhas A/B** (ou bases CEJUSC) no Hugging Face:
-- prefira **anonimizar** e remover campos sensíveis
-- deixe claro a origem, licenças e limitações
-- se necessário, publique como **private** ou **gated dataset**
+Link dos dados usados no projeto: https://huggingface.co/datasets/Willgnner-Santos/Classificando-Perfil-de-Conciliacao
 
 ---
 
-## Autor
 
-Willgnner Ferreira Santos
