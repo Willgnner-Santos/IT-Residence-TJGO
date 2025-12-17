@@ -1,0 +1,48 @@
+@'
+# =========================
+# DADOS (LGPD / não versionar)
+# =========================
+**/Dados/**/*.csv
+**/Dados/**/*.json
+**/Conciliacao/dados/**
+**/dados/**/*.csv
+**/dados/**/*.json
+**/frequencia_tokens_artificiais.txt
+
+# =========================
+# EMBEDDINGS / VETORES
+# =========================
+**/*.npy
+**/Embeddings/**
+**/*Embeddings*.json
+**/*Embeddings*.npy
+
+# =========================
+# CHECKPOINTS
+# =========================
+**/checkpoint*.json
+**/checkpoint*.npy
+
+# =========================
+# MODELOS TREINADOS
+# =========================
+**/*.pkl
+**/*.joblib
+
+# =========================
+# LOGS / ARTEFATOS DE TREINO
+# =========================
+**/catboost_info/
+**/events.out.tfevents*
+**/tmp/
+**/*.tsv
+
+# =========================
+# JUPYTER / PYTHON
+# =========================
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.venv/
+.env
+'@ | Set-Content .gitignore -Encoding utf8

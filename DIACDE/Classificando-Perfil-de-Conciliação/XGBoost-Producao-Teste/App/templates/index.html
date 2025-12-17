@@ -1,0 +1,257 @@
+<!-- Versão 4 -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Classificador de Petições - Perfil Conciliação</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background-color: #ffffff;
+            padding: 30px 25px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .sidebar img {
+            width: 220px;
+            margin-bottom: 6px;
+        }
+
+        .barra {
+            border-top: 1.9px solid #000;
+            width: 85%;
+            margin: 6px auto;
+        }
+
+        .sidebar h2 {
+            font-size: 16px;
+            color: #0a4275;
+            margin-bottom: 10px;
+        }
+
+        .sidebar p {
+            font-size: 13px;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        .main {
+            flex: 1;
+            padding: 50px;
+            background-color: #f4f6f9;
+        }
+
+        h1 {
+            color: #0a4275;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 95%;
+            height: 180px;
+            padding: 15px;
+            font-size: 15px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            resize: vertical;
+            box-shadow: 0 0 4px rgba(59, 130, 246, 0.1);
+        }
+
+        input[type="submit"],
+        button[type="button"] {
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        input[type="submit"] {
+            background-color: #0a4275;
+            color: white;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #063358;
+        }
+
+        button[type="button"] {
+            background-color: #dc3545;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .box {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .box .titulo {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #0a4275;
+        }
+
+        .resultado {
+            font-size: 16px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            color: #333;
+        }
+
+        .alert {
+            background-color: #fff8e1;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        /* Botão de upload estilizado */
+        .upload-box {
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+
+        .upload-label {
+            background-color: #0a4275;
+            color: white;
+            padding: 10px 18px;
+            font-size: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .upload-label:hover {
+            background-color: #063358;
+        }
+
+        .nome-arquivo {
+            margin-left: 12px;
+            font-size: 14px;
+            color: #444;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="sidebar">
+            <img src="{{ url_for('static', filename='Logo.png') }}" alt="Logo TJGO">
+            <div class="barra"></div>
+
+            <h2>🔎 Classificador de Petições</h2>
+            <p>Este sistema utiliza técnicas de machine learning para prever se uma petição é considerada
+                <strong>frutífera</strong> ou <strong>infrutífera</strong>, com base em seu conteúdo textual.</p>
+        </div>
+
+        <div class="main">
+            <h1>Classificação Jurídica de Petição | Frutífera ou Infrutífera</h1>
+            <form method="post" enctype="multipart/form-data" onsubmit="mostrarCarregando()">
+                <label for="peticao">Digite o texto da petição ou envie até 5 PDFs:</label><br><br>
+                <textarea id="peticao" name="peticao" placeholder="Ex: A parte autora propõe ação de execução..."></textarea><br><br>
+
+                <div class="upload-box">
+                    <label for="upload" class="upload-label">📎 Escolher arquivos PDF</label>
+                    <input id="upload" type="file" name="arquivos_pdf" accept=".pdf" multiple onchange="mostrarNomes()" hidden>
+                    <span id="nome-arquivo" class="nome-arquivo">Nenhum arquivo escolhido</span>
+                </div>
+
+                <input type="submit" value="Classificar">
+                <button type="button" onclick="limparCampo()">Limpar</button>
+            </form>
+
+            <!-- Alerta customizado -->
+            <div id="alerta-usuario" class="alert" style="display: none;"></div>
+
+            <div id="alertas">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+
+            <div id="resultado-bloco">
+                {% if respostas %}
+                    {% for nome, resposta in respostas %}
+                        <div class="box">
+                            <div class="titulo">📄 {{ nome }}</div>
+                            <div class="resultado">{{ resposta | safe }}</div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function limparCampo() {
+            document.getElementById("peticao").value = "";
+            document.getElementById("upload").value = "";
+            document.getElementById("nome-arquivo").textContent = "Nenhum arquivo escolhido";
+
+            document.getElementById("alerta-usuario").style.display = "none";
+            document.getElementById("alerta-usuario").innerHTML = "";
+
+            const alertas = document.getElementById("alertas");
+            if (alertas) alertas.innerHTML = "";
+
+            const resultado = document.getElementById("resultado-bloco");
+            if (resultado) resultado.innerHTML = "";
+        }
+
+        function mostrarCarregando() {
+            // loading futuro
+        }
+
+        function mostrarNomes() {
+            const input = document.getElementById('upload');
+            const label = document.getElementById('nome-arquivo');
+            const alerta = document.getElementById('alerta-usuario');
+
+            if (input.files.length > 5) {
+                alerta.innerHTML = "⚠️ Por favor, selecione no máximo 5 arquivos PDF.";
+                alerta.style.display = "block";
+                input.value = "";
+                label.textContent = "Nenhum arquivo escolhido";
+            } else if (input.files.length === 0) {
+                alerta.style.display = "none";
+                alerta.innerHTML = "";
+                label.textContent = "Nenhum arquivo escolhido";
+            } else {
+                alerta.style.display = "none";
+                alerta.innerHTML = "";
+                const nomes = Array.from(input.files).map(f => f.name).join(', ');
+                label.textContent = nomes;
+            }
+        }
+    </script>
+</body>
+</html>
+
