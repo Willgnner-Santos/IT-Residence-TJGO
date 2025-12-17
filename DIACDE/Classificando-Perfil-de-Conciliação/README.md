@@ -12,8 +12,12 @@ Este repositório organiza um pipeline para **classificar o perfil de conciliaç
 
 ## Estrutura do repositório (visão local)
 
-Abaixo está uma visão **do ambiente local**, com dados e artefatos.  
-Ela serve como referência para organização.
+Abaixo está uma visão **do seu ambiente local**, com dados e artefatos.  
+Ela serve como referência para organização (você pode inserir um print nessa seção).
+
+📌 **Print da estrutura (coloque aqui):**
+- Sugestão: crie `docs/estrutura_repositorio.png` e referencie:
+  - `![Estrutura do repositório](docs/estrutura_repositorio.png)`
 
 Estrutura (resumo):
 
@@ -176,51 +180,56 @@ Sugestão: crie um arquivo `.gitkeep` em cada pasta vazia.
 > Se você já tem um `.gitignore`, compare com este e incorpore o que faltar.
 
 ```gitignore
-@'
-# DADOS (não versionar)
-Dados/
-dados/
-Conciliacao/dados/
+# =========================
+# DADOS (LGPD / não versionar)
+# =========================
+**/Dados/**/*.csv
+**/Dados/**/*.json
+**/Conciliacao/dados/**
+**/dados/**/*.csv
+**/dados/**/*.json
 
-# ARQUIVOS DE DADOS (qualquer lugar dentro do projeto)
-*.csv
-*.json
-*.npy
-*.pkl
-*.joblib
+# =========================
+# EMBEDDINGS / VETORES
+# =========================
+**/*.npy
+**/Embeddings/**
+**/*Embeddings*.json
+**/*Embeddings*.npy
 
-# EMBEDDINGS / CHECKPOINTS
-Embeddings/
-checkpoint*.json
-checkpoint*.npy
+# =========================
+# CHECKPOINTS
+# =========================
+**/checkpoint*.json
+**/checkpoint*.npy
 
-# LOGS / TREINO
-catboost_info/
-events.out.tfevents*
-tmp/
-*.tsv
+# =========================
+# MODELOS TREINADOS
+# =========================
+**/*.pkl
+**/*.joblib
 
+# =========================
+# LOGS / ARTEFATOS DE TREINO
+# =========================
+**/catboost_info/
+**/events.out.tfevents*
+**/tmp/
+**/*.tsv
+
+# =========================
 # JUPYTER / PYTHON
+# =========================
 .ipynb_checkpoints/
 __pycache__/
 *.pyc
 .venv/
 .env
-
-# SEGREDOS
-br-*.json
-
-# EXCEÇÕES (quero versionar)
-!requirements.txt
-!README.md
-!Dockerfile
-!docker-compose.yml
-'@ | Set-Content "DIACDE\Classificando-Perfil-de-Conciliação\.gitignore" -Encoding utf8
 ```
 
 ---
 
-## Como reproduzir 
+## Como reproduzir (alto nível)
 
 1) **Coloque os dados localmente** nas pastas `Dados/` (ou em `Conciliacao/dados/cejusc_*/`).  
 2) Rode scripts em `Scripts/` para:
@@ -231,4 +240,15 @@ br-*.json
 
 ---
 
+## Nota sobre publicação dos dados no Hugging Face
 
+Se você for publicar as **Planilhas A/B** (ou bases CEJUSC) no Hugging Face:
+- prefira **anonimizar** e remover campos sensíveis
+- deixe claro a origem, licenças e limitações
+- se necessário, publique como **private** ou **gated dataset**
+
+---
+
+## Autor
+
+Willgnner Ferreira Santos

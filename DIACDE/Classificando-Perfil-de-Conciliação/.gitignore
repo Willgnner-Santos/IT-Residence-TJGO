@@ -1,48 +1,40 @@
 @'
-# =========================
-# DADOS (LGPD / não versionar)
-# =========================
-**/Dados/**/*.csv
-**/Dados/**/*.json
-**/Conciliacao/dados/**
-**/dados/**/*.csv
-**/dados/**/*.json
-**/frequencia_tokens_artificiais.txt
+# DADOS (não versionar)
+Dados/
+dados/
+Conciliacao/dados/
 
-# =========================
-# EMBEDDINGS / VETORES
-# =========================
-**/*.npy
-**/Embeddings/**
-**/*Embeddings*.json
-**/*Embeddings*.npy
+# ARQUIVOS DE DADOS (qualquer lugar dentro do projeto)
+*.csv
+*.json
+*.npy
+*.pkl
+*.joblib
 
-# =========================
-# CHECKPOINTS
-# =========================
-**/checkpoint*.json
-**/checkpoint*.npy
+# EMBEDDINGS / CHECKPOINTS
+Embeddings/
+checkpoint*.json
+checkpoint*.npy
 
-# =========================
-# MODELOS TREINADOS
-# =========================
-**/*.pkl
-**/*.joblib
+# LOGS / TREINO
+catboost_info/
+events.out.tfevents*
+tmp/
+*.tsv
 
-# =========================
-# LOGS / ARTEFATOS DE TREINO
-# =========================
-**/catboost_info/
-**/events.out.tfevents*
-**/tmp/
-**/*.tsv
-
-# =========================
 # JUPYTER / PYTHON
-# =========================
 .ipynb_checkpoints/
 __pycache__/
 *.pyc
 .venv/
 .env
-'@ | Set-Content .gitignore -Encoding utf8
+
+# SEGREDOS
+br-*.json
+
+# EXCEÇÕES (quero versionar)
+!requirements.txt
+!README.md
+!Dockerfile
+!docker-compose.yml
+'@ | Set-Content "DIACDE\Classificando-Perfil-de-Conciliação\.gitignore" -Encoding utf8
