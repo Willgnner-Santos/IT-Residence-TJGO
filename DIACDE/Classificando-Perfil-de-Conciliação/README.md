@@ -12,12 +12,9 @@ Este repositório organiza um pipeline para **classificar o perfil de conciliaç
 
 ## Estrutura do repositório (visão local)
 
-Abaixo está uma visão **do seu ambiente local**, com dados e artefatos.  
-Ela serve como referência para organização (você pode inserir um print nessa seção).
+Abaixo está uma visão **do ambiente local**, com dados e artefatos.  
+Ela serve como referência para organização.
 
-📌 **Print da estrutura:**
-
- 
 Estrutura (resumo):
 
 ```text
