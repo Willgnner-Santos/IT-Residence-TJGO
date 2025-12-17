@@ -15,10 +15,9 @@ Este repositório organiza um pipeline para **classificar o perfil de conciliaç
 Abaixo está uma visão **do seu ambiente local**, com dados e artefatos.  
 Ela serve como referência para organização (você pode inserir um print nessa seção).
 
-📌 **Print da estrutura (coloque aqui):**
-- Sugestão: crie `docs/estrutura_repositorio.png` e referencie:
-  - `![Estrutura do repositório](docs/estrutura_repositorio.png)`
+📌 **Print da estrutura:**
 
+ 
 Estrutura (resumo):
 
 ```text
@@ -180,56 +179,51 @@ Sugestão: crie um arquivo `.gitkeep` em cada pasta vazia.
 > Se você já tem um `.gitignore`, compare com este e incorpore o que faltar.
 
 ```gitignore
-# =========================
-# DADOS (LGPD / não versionar)
-# =========================
-**/Dados/**/*.csv
-**/Dados/**/*.json
-**/Conciliacao/dados/**
-**/dados/**/*.csv
-**/dados/**/*.json
+@'
+# DADOS (não versionar)
+Dados/
+dados/
+Conciliacao/dados/
 
-# =========================
-# EMBEDDINGS / VETORES
-# =========================
-**/*.npy
-**/Embeddings/**
-**/*Embeddings*.json
-**/*Embeddings*.npy
+# ARQUIVOS DE DADOS (qualquer lugar dentro do projeto)
+*.csv
+*.json
+*.npy
+*.pkl
+*.joblib
 
-# =========================
-# CHECKPOINTS
-# =========================
-**/checkpoint*.json
-**/checkpoint*.npy
+# EMBEDDINGS / CHECKPOINTS
+Embeddings/
+checkpoint*.json
+checkpoint*.npy
 
-# =========================
-# MODELOS TREINADOS
-# =========================
-**/*.pkl
-**/*.joblib
+# LOGS / TREINO
+catboost_info/
+events.out.tfevents*
+tmp/
+*.tsv
 
-# =========================
-# LOGS / ARTEFATOS DE TREINO
-# =========================
-**/catboost_info/
-**/events.out.tfevents*
-**/tmp/
-**/*.tsv
-
-# =========================
 # JUPYTER / PYTHON
-# =========================
 .ipynb_checkpoints/
 __pycache__/
 *.pyc
 .venv/
 .env
+
+# SEGREDOS
+br-*.json
+
+# EXCEÇÕES (quero versionar)
+!requirements.txt
+!README.md
+!Dockerfile
+!docker-compose.yml
+'@ | Set-Content "DIACDE\Classificando-Perfil-de-Conciliação\.gitignore" -Encoding utf8
 ```
 
 ---
 
-## Como reproduzir (alto nível)
+## Como reproduzir 
 
 1) **Coloque os dados localmente** nas pastas `Dados/` (ou em `Conciliacao/dados/cejusc_*/`).  
 2) Rode scripts em `Scripts/` para:
@@ -240,15 +234,4 @@ __pycache__/
 
 ---
 
-## Nota sobre publicação dos dados no Hugging Face
 
-Se você for publicar as **Planilhas A/B** (ou bases CEJUSC) no Hugging Face:
-- prefira **anonimizar** e remover campos sensíveis
-- deixe claro a origem, licenças e limitações
-- se necessário, publique como **private** ou **gated dataset**
-
----
-
-## Autor
-
-Willgnner Ferreira Santos
