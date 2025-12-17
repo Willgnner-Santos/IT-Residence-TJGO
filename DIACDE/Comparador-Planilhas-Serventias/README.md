@@ -140,43 +140,7 @@ Ela traz **pistas** (heurísticas) para triagem, por exemplo:
 - `serventia (diferente para mesmo codigo)` quando o código existe mas o nome diverge
 - `entrancia` ausente (se fizer parte da chave)
 
-> Observação: esse diagnóstico é heurístico e serve para **triagem** — a validação final é humana.
-
----
-
-## Git: como subir/atualizar o projeto no repositório
-
-> Você disse que já colocou o `.gitignore` — perfeito.  
-> Isso evita subir dados reais da pasta `Dados/` e resultados em `outputs/`.
-
-### Subir pela primeira vez (ou após copiar a pasta para um repo maior)
-
-Dentro da pasta do repositório (onde existe `.git/`), rode:
-
-```bash
-git status
-git add .
-git commit -m "Add comparador de planilhas (MPM vs TLP)"
-git pull --rebase
-git push
-```
-
-### Atualizar depois (quando você alterar o notebook/README)
-
-```bash
-git status
-git add .
-git commit -m "Update notebook/README do comparador"
-git pull --rebase
-git push
-```
-
-### Dica (checagem antes do push)
-
-```bash
-git status
-git diff --staged
-```
+> Observação: esse diagnóstico é heurístico e serve para **triagem**, a validação final é humana.
 
 ---
 
@@ -189,6 +153,5 @@ O recomendado é:
 
 ---
 
-## Autor
-
-Willgnner Ferreira Santos
+Link dos dados usados no projeto: https://huggingface.co/datasets/Willgnner-Santos/Comparador-Planilhas-Serventias
+---
