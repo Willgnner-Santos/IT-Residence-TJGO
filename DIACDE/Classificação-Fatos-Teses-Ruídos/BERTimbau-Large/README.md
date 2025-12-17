@@ -1,4 +1,4 @@
-# Classificador de Documentos Jurídicos - neuralmind/bert-large-portuguese-cased
+# Classificador de Documentos Jurídicos - BERTimbau-Large
 
 ## Visão Geral
 
