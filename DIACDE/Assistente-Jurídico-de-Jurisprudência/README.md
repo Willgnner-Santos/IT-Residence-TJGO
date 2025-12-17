@@ -167,8 +167,14 @@ Este projeto foi desenvolvido para consultas jurídicas inteligentes com uso de 
 ---
 
 ## Prints V1 e V2 respectivamente
-![image](https://github.com/user-attachments/assets/35df6c26-ad7f-4847-9f61-1cb93f282bba)
-![image](https://github.com/user-attachments/assets/06678e50-d273-4218-823c-7aec46bed969)
+
+<img width="1912" height="988" alt="image" src="https://github.com/user-attachments/assets/44d50546-3cd4-4a8d-bbc9-11ac10026033" />
+<img width="1906" height="992" alt="image" src="https://github.com/user-attachments/assets/91a6ff49-e91e-40b6-9791-0e3d7914ef0b" />
+<img width="1896" height="990" alt="image" src="https://github.com/user-attachments/assets/71774e6d-a47d-4c5c-ac1b-5c8badda7a14" />
+
+---
+
+## Dados publicado no: https://huggingface.co/datasets/Willgnner-Santos/Assistente-Juridico-de-Jurisprudencia
 
 
 
