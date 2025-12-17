@@ -29,6 +29,8 @@ CLASSIFICANDO-PERFIL-DE-CONCILIAÇÃO/
 │  ├─ Conciliacao.ipynb
 │  ├─ dados_processos_completo.csv
 │  └─ embeddings_cejusc.npy
+├─ Análise-Estatística-do-Corpus/
+│  └─ Statistical-Corpus-Analysis.ipynb
 ├─ Conciliacao/
 │  ├─ dados/
 │  │  ├─ cejusc_03072025/
