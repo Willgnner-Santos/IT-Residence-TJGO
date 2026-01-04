@@ -1,0 +1,16 @@
+INSERT INTO dim_diretor (nome) VALUES
+('Christopher Nolan'),
+('Quentin Tarantino'),
+('Steven Spielberg'),
+('Martin Scorsese'),
+('Alfred Hitchcock'),
+('Stanley Kubrick'),
+('Peter Jackson'),
+('Ridley Scott'),
+('James Cameron'),
+('Francis Ford Coppola'),
+('David Fincher'),
+('Clint Eastwood'),
+('Woody Allen'),
+('George Lucas'),
+('Tim Burton');
