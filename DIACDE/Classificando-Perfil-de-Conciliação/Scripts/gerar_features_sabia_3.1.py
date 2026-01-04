@@ -16,7 +16,7 @@ CAMINHO_SAIDA = r"C:\Users\willgnnerferreira\Documents\Modelos\Perfil-Conciliaç
 CHECKPOINT_PATH = "checkpoint_parcial.json"
 
 client = openai.OpenAI(
-    api_key="67d85e438a7bf6f97b656ed9_5215e7b3773541e0",
+    api_key="API",
     base_url="https://chat.maritaca.ai/api",
 )
 
