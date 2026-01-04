@@ -34,6 +34,8 @@ homework/
 
 ---
 
+# Dados: https://huggingface.co/datasets/Willgnner-Santos/BD_Producao_Artistica
+
 # Guia rápido — Como rodar o projeto
 
 > Requisitos: Git, Docker, Python 3.11 instalados.
