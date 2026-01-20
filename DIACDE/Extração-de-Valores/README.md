@@ -51,6 +51,3 @@ Este projeto foi desenvolvido pelo Tribunal de Justiça do Estado de Goiás (TJG
 👤 Willgnner Ferreira Santos
 📧 eng.willgnner@gmail.com
 
-
-
-
