@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: extract_valor
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    environment:
+      - STREAMLIT_SERVER_ENABLE_WEBSOCKETS=false
+      - STREAMLIT_SERVER_ENABLE_CORS=true
+      - STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION=false
+      - STREAMLIT_SERVER_ALLOWED_ORIGINS=*
+    restart: unless-stopped
